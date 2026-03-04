@@ -199,10 +199,6 @@ npm run lint       # ESLint para revisar código
 - [ ] PWA (Service Workers)
 - [ ] Upload de imágenes
 
-## Licencia
-
-Este proyecto está bajo licencia MIT.
-
 ---
 
 **Desarrollado como aplicación de demostración con React 18, Vite y buenas prácticas modernas de frontend.**
