@@ -189,7 +189,7 @@ Panel de control con estadísticas:
 
 ---
 
-### 🧩 Patrón de Desarrollo
+### Patrón de Desarrollo
 
 Para añadir un nuevo componente o sección, sigue este patrón:
 
@@ -267,18 +267,4 @@ const { theme, toggleTheme } = useTheme()
 <div className={`app-container ${theme}`}>
 ```
 
----
-
-### Próximas Ampliaciones Posibles
-
-1. **Reviews/Reseñas:** Componente para crear reseñas de películas
-2. **Watchlist:** Guardar películas favoritas en localStorage o base de datos
-3. **Búsqueda global:** Barra de búsqueda unificada en navbar
-4. **Filtros avanzados:** Por año, calificación, género
-5. **Paginación:** Para listas grandes
-6. **Carrito/Basket:** Para compra de entradas
-7. **Horarios de cines:** Si tienes tabla de showtimes
-8. **Tests automatizados:** Vitest + React Testing Library
-9. **Animaciones:** Framer Motion para transiciones
-10. **PWA:** Service workers para offline y notificaciones push
 
