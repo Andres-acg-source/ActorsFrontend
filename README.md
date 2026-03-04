@@ -188,20 +188,6 @@ npm run lint       # ESLint para revisar código
 - [EXAMPLES.md](EXAMPLES.md) - Ejemplos de uso de cada componente
 - [DEVELOPMENT.md](DEVELOPMENT.md) - Notas de desarrollo
 
-## Próximas Mejoras
-
-- [ ] Paginación en listas largas
-- [ ] Filtros avanzados (año, calificación, género)
-- [ ] Guardados/favoritos (watchlist)
-- [ ] Búsqueda global en navbar
-- [ ] Tests automatizados
-- [ ] Animaciones con Framer Motion
-- [ ] PWA (Service Workers)
-- [ ] Upload de imágenes
-
----
-
-**Desarrollado como aplicación de demostración con React 18, Vite y buenas prácticas modernas de frontend.**
 
 ## Características
 
@@ -359,8 +345,3 @@ Para agregar nuevas funcionalidades:
 2. Importalos en `App.jsx`
 3. Agrega las rutas necesarias
 4. Importa los estilos según sea necesario
-
-
----
-
-**Desarrollado como aplicación de demostración de React y Vite**
