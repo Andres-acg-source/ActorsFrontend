@@ -137,36 +137,6 @@ ActorsFrontend/
 
 ---
 
-## 🎓 Caso de Estudio: Examen
-
-Si te ponen a un examen y te piden "extender este frontend", típicamente piden:
-
-1. **Nuevo componente asincrónico**
-   - Cargar datos de API
-   - Mostrar estado de carga
-   - Manejar errores
-   - Renderizar lista o detalle
-
-2. **Formulario con validación**
-   - Campos controlados con useState
-   - Validar antes de enviar
-   - Mostrar errores inline
-   - Integración con API (POST/PUT)
-
-3. **Protección de rutas**
-   - Verificar autenticación
-   - Redirigir si no autorizado
-   - Context o hook para auth
-
-4. **Componente reutilizable**
-   - Props bien documentadas
-   - Comportamiento flexible
-   - Uso en múltiples lugares
-   - Estilos CSS normalizados
-
-
----
-
 ## Cómo Arrancar
 
 ```bash
