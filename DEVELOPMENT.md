@@ -116,16 +116,5 @@ Prueba cada característica:
 - Estilos responsive para móvil y desktop
 - UI moderna con hover effects y animaciones suaves
 
-### 8. Próximos Pasos (Opcional)
-
-- [ ] Conectar con API real backend
-- [ ] Agregar validación de formularios más robusta
-- [ ] Implementar paginación para grandes listas
-- [ ] Agregar búsqueda y filtros
-- [ ] Implementar autenticación
-- [ ] Agregar tests unitarios con Vitest
-- [ ] Mejorar manejo de errores y loading states
-
----
 
 **Desarrollado con React 18 + Vite**
