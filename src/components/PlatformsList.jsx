@@ -39,7 +39,7 @@ function PlatformsList() {
 
   return (
     <div>
-      <h2 style={{ color: '#646cff', marginBottom: '2rem' }}>Plataformas</h2>
+      <h2 style={{ color: '#646cff', marginBottom: '2rem' }}>{t('platforms')}</h2>
       <CardGrid>
         {platforms.map(platform => (
           <Card
@@ -47,9 +47,9 @@ function PlatformsList() {
             id={platform.id}
             type="platform"
             title={platform.name}
-            description={`Plataforma de streaming`}
+            description={t('streamingPlatform')}
             meta={[
-              { label: 'URL', value: platform.url || 'N/A' }
+              { label: t('url'), value: platform.url || 'N/A' }
             ]}
           />
         ))}

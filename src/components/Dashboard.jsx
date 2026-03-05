@@ -68,42 +68,42 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-      <h2 style={{ color: '#646cff', marginBottom: '2rem' }}>Dashboard</h2>
+      <h2 style={{ color: '#646cff', marginBottom: '2rem' }}>{t('dashboard')}</h2>
 
       <div className="stats-grid">
         <div className="stat-card">
           <h3>{stats.totalActors}</h3>
-          <p>Actores</p>
+          <p>{t('actors')}</p>
         </div>
         <div className="stat-card">
           <h3>{stats.totalMovies}</h3>
-          <p>Películas</p>
+          <p>{t('movies')}</p>
         </div>
         <div className="stat-card">
           <h3>{stats.totalDirectors}</h3>
-          <p>Directores</p>
+          <p>{t('directors')}</p>
         </div>
         <div className="stat-card">
           <h3>{stats.totalGenres}</h3>
-          <p>Géneros</p>
+          <p>{t('genres')}</p>
         </div>
       </div>
 
       <div className="dashboard-section">
-        <h3>Top películas por calificación</h3>
+        <h3>{t('topRatedMovies')}</h3>
         <div className="movies-top">
           {stats.topRatedMovies.map((movie, idx) => (
             <div key={movie.id} className="top-movie">
               <span className="rank">#{idx + 1}</span>
               <span className="title">{movie.title}</span>
-              <span className="rating">⭐ {movie.popularity}/10</span>
+              <span className="rating">{movie.popularity}/5</span>
             </div>
           ))}
         </div>
       </div>
 
       <div className="dashboard-section">
-        <h3>Actores por país</h3>
+        <h3>{t('actorsByCountry')}</h3>
         <div className="country-stats">
           {Object.entries(stats.actorsByNationality).map(([country, count]) => (
             <div key={country} className="country-stat">

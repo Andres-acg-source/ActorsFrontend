@@ -53,7 +53,7 @@ function CreateActor({ onAdd }) {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="Ej: Tom Hanks"
+            placeholder={t('exampleActorName')}
           />
         </div>
 
@@ -65,7 +65,7 @@ function CreateActor({ onAdd }) {
             name="photo"
             value={formData.photo}
             onChange={handleChange}
-            placeholder="https://ejemplo.com/foto.jpg"
+            placeholder={t('examplePhotoUrl')}
           />
         </div>
 
@@ -77,7 +77,7 @@ function CreateActor({ onAdd }) {
             name="nationality"
             value={formData.nationality}
             onChange={handleChange}
-            placeholder="Ej: Estadounidense"
+            placeholder={t('exampleNationality')}
           />
         </div>
 
@@ -99,7 +99,7 @@ function CreateActor({ onAdd }) {
             name="biography"
             value={formData.biography}
             onChange={handleChange}
-            placeholder="Escribe la biografía del actor..."
+            placeholder={t('actorBiographyPlaceholder')}
           />
         </div>
 

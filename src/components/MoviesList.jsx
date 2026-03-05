@@ -44,10 +44,10 @@ function MoviesList() {
 
   return (
     <div>
-      <h2 style={{ color: '#646cff', marginBottom: '2rem' }}>Películas</h2>
+      <h2 style={{ color: '#646cff', marginBottom: '2rem' }}>{t('movies')}</h2>
       <input
         type="text"
-        placeholder="Buscar película..."
+        placeholder={t('searchMovies')}
         value={query}
         onChange={e => setQuery(e.target.value)}
         style={{
@@ -70,9 +70,9 @@ function MoviesList() {
             image={movie.poster}
             description={`${movie.country || 'N/A'} - ${movie.duration || 0}m`}
             meta={[
-              { label: 'Año', value: new Date(movie.releaseDate).getFullYear() },
-              { label: 'Duración', value: `${movie.duration || 0}m` },
-              { label: 'Popularidad', value: `${movie.popularity || 0}/10` }
+              { label: t('year'), value: new Date(movie.releaseDate).getFullYear() },
+              { label: t('duration'), value: `${movie.duration || 0}m` },
+              { label: t('rating'), value: `${movie.popularity || 0}/5` }
             ]}
           />
         ))}

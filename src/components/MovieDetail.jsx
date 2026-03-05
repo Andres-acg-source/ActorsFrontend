@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Loading } from './shared/UI'
 
 function MovieDetail() {
+  const { t } = useTranslation()
   const { id } = useParams()
   const navigate = useNavigate()
   const [movie, setMovie] = useState(null)
@@ -53,7 +55,7 @@ function MovieDetail() {
   }
 
   if (loading) return <Loading />
-  if (!movie) return <div>Película no encontrada</div>
+  if (!movie) return <div>{t('movieNotFound')}</div>
 
   return (
     <div className="detail-container">
@@ -68,18 +70,18 @@ function MovieDetail() {
         <div className="detail-info">
           <h1>{movie.title}</h1>
           {director && (
-            <p><strong>Director:</strong> {director.name}</p>
+            <p><strong>{t('director')}:</strong> {director.name}</p>
           )}
-          <p><strong>Año:</strong> {new Date(movie.releaseDate).getFullYear()}</p>
-          <p><strong>Duración:</strong> {movie.duration} minutos</p>
-          <p><strong>Calificación:</strong> {movie.popularity}/10</p>
-          <p><strong>País:</strong> {movie.country}</p>
+          <p><strong>{t('year')}:</strong> {new Date(movie.releaseDate).getFullYear()}</p>
+          <p><strong>{t('duration')}:</strong> {movie.duration} {t('minutes')}</p>
+          <p><strong>{t('rating')}:</strong> {movie.popularity}/5</p>
+          <p><strong>{t('country')}:</strong> {movie.country}</p>
         </div>
       </div>
 
       {actors.length > 0 && (
         <div className="detail-section">
-          <h2>Elenco</h2>
+          <h2>{t('cast')}</h2>
           <div className="actors-list">
             {actors.map(actor => (
               <div key={actor.id} className="actor-item">
@@ -92,11 +94,11 @@ function MovieDetail() {
 
       {reviews.length > 0 && (
         <div className="detail-section">
-          <h2>Reseñas</h2>
+          <h2>{t('reviews')}</h2>
           <div className="reviews-list">
             {reviews.map(review => (
               <div key={review.id} className="review-item">
-                <p><strong>{review.user_name}</strong> - ⭐ {review.rating}/10</p>
+                <p><strong>{review.user_name}</strong> - {review.rating}/5</p>
                 <p>{review.comment}</p>
               </div>
             ))}
@@ -106,12 +108,12 @@ function MovieDetail() {
 
       {movie.youtubeTrailerId && (
         <div className="detail-section">
-          <h2>Tráiler</h2>
+          <h2>{t('trailer')}</h2>
           <iframe
             width="100%"
             height="400"
             src={`https://www.youtube.com/embed/${movie.youtubeTrailerId}`}
-            title="Tráiler"
+            title={t('trailer')}
             allowFullScreen
           ></iframe>
         </div>

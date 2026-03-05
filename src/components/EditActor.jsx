@@ -55,7 +55,7 @@ function EditActor({ actors, onUpdate }) {
   }
 
   if (loading) {
-    return <div className="loading">Cargando datos del actor...</div>
+    return <div className="loading">{t('loadingActorData')}</div>
   }
 
   return (
@@ -71,7 +71,7 @@ function EditActor({ actors, onUpdate }) {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="Ej: Tom Hanks"
+            placeholder={t('exampleActorName')}
           />
         </div>
 
@@ -83,7 +83,7 @@ function EditActor({ actors, onUpdate }) {
             name="photo"
             value={formData.photo}
             onChange={handleChange}
-            placeholder="https://ejemplo.com/foto.jpg"
+            placeholder={t('examplePhotoUrl')}
           />
         </div>
 
@@ -95,7 +95,7 @@ function EditActor({ actors, onUpdate }) {
             name="nationality"
             value={formData.nationality}
             onChange={handleChange}
-            placeholder="Ej: Estadounidense"
+            placeholder={t('exampleNationality')}
           />
         </div>
 

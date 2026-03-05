@@ -44,10 +44,10 @@ function DirectorsList() {
 
   return (
     <div>
-      <h2 style={{ color: '#646cff', marginBottom: '2rem' }}>Directores</h2>
+      <h2 style={{ color: '#646cff', marginBottom: '2rem' }}>{t('directors')}</h2>
       <input
         type="text"
-        placeholder="Buscar director..."
+        placeholder={t('searchDirectors')}
         value={query}
         onChange={e => setQuery(e.target.value)}
         style={{
@@ -70,8 +70,8 @@ function DirectorsList() {
             image={director.photo}
             description={director.biography}
             meta={[
-              { label: 'País', value: director.nationality },
-              { label: 'Nacimiento', value: new Date(director.birthDate).toLocaleDateString('es-ES') }
+              { label: t('country'), value: director.nationality },
+              { label: t('birth'), value: new Date(director.birthDate).toLocaleDateString('es-ES') }
             ]}
           />
         ))}

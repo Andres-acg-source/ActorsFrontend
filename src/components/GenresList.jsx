@@ -39,7 +39,7 @@ function GenresList() {
 
   return (
     <div>
-      <h2 style={{ color: '#646cff', marginBottom: '2rem' }}>Géneros</h2>
+      <h2 style={{ color: '#646cff', marginBottom: '2rem' }}>{t('genres')}</h2>
       <CardGrid>
         {genres.map(genre => (
           <Card
@@ -47,9 +47,9 @@ function GenresList() {
             id={genre.id}
             type="genre"
             title={genre.type}
-            description={`Género cinemático`}
+            description={t('cinematicGenre')}
             meta={[
-              { label: 'Tipo', value: genre.type }
+              { label: t('type'), value: genre.type }
             ]}
           />
         ))}
