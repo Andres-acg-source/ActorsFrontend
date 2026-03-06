@@ -1,147 +1,194 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 
-function Createmovie({ onAdd }) {
+function CreateMovie({ createActor }) {
+
   const { t } = useTranslation()
   const navigate = useNavigate()
 
-  const [formData, setFormData] = useState({
-    title: '',
-    poster: '',
-    duration: '',
-    country: '',
-    releaseDate: '',
-    popularity: ''
+  const [movieData, setMovieData] = useState({
+    title: "",
+    poster: "",
+    duration: "",
+    country: "",
+    releaseDate: "",
+    popularity: ""
   })
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
+  const [actorData, setActorData] = useState({
+    name: ""
+  })
 
-    setFormData(prevState => ({
-      ...prevState,
+  const [prizeData, setPrizeData] = useState({
+    name: "",
+    year: ""
+  })
+
+  const handleMovieChange = (e) => {
+    const { name, value } = e.target
+    setMovieData(prev => ({
+      ...prev,
       [name]: value
     }))
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    if (
-      !formData.title ||
-      !formData.poster ||
-      !formData.duration ||
-      !formData.country ||
-      !formData.releaseDate ||
-      !formData.popularity
-    ) {
-      alert(t('pleaseFillAll'))
-      return
-    }
-
-    onAdd(formData)
-
-    // Navegar a la lista de películas
-    navigate('/movies')
+  const handleActorChange = (e) => {
+    const { name, value } = e.target
+    setActorData(prev => ({
+      ...prev,
+      [name]: value
+    }))
   }
 
-  const handleCancel = () => {
-    navigate('/movies')
+  const handlePrizeChange = (e) => {
+    const { name, value } = e.target
+    setPrizeData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault()
+
+    try {
+
+      // 1️⃣ Crear película
+      const movieResponse = await fetch("http://localhost:3000/movies", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(movieData)
+      })
+
+      const movie = await movieResponse.json()
+
+      // 2️⃣ Crear actor
+      const actor = await createActor(actorData)
+
+      // 3️⃣ Asociar actor con película
+      await fetch(`http://localhost:3000/actors/${actor.id}/movies/${movie.id}`, {
+        method: "POST"
+      })
+
+      // 4️⃣ Crear premio
+      const prizeResponse = await fetch("http://localhost:3000/prizes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(prizeData)
+      })
+
+      const prize = await prizeResponse.json()
+
+      // 5️⃣ Asociar premio con película
+      await fetch(`http://localhost:3000/movies/${movie.id}/prizes/${prize.id}`, {
+        method: "POST"
+      })
+
+      navigate("/movies")
+
+    } catch (error) {
+      console.error("Error creating movie", error)
+    }
+
   }
 
   return (
     <div className="form-container">
-      <h2 className="form-title">{t('createMovie')}</h2>
+
+      <h2>{t("createMovie")}</h2>
 
       <form onSubmit={handleSubmit}>
 
-        <div className="form-group">
-          <label htmlFor="title">{t('title')}</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            placeholder={t('exampleMovietitle')}
-          />
-        </div>
+        <h3>Movie</h3>
 
-        <div className="form-group">
-          <label htmlFor="poster">{t('posterUrl')}</label>
-          <input
-            type="url"
-            id="poster"
-            name="poster"
-            value={formData.poster}
-            onChange={handleChange}
-            placeholder={t('exampleposterUrl')}
-          />
-        </div>
+        <input
+          type="text"
+          name="title"
+          placeholder="Title"
+          value={movieData.title}
+          onChange={handleMovieChange}
+        />
 
-        <div className="form-group">
-          <label htmlFor="duration">{t('duration')}</label>
-          <input
-            type="text"
-            id="duration"
-            name="duration"
-            value={formData.duration}
-            onChange={handleChange}
-            placeholder={t('exampledurationTime')}
-          />
-        </div>
+        <input
+          type="text"
+          name="poster"
+          placeholder="Poster URL"
+          value={movieData.poster}
+          onChange={handleMovieChange}
+        />
 
-        <div className="form-group">
-          <label htmlFor="country">{t('country')}</label>
-          <input
-            type="text"
-            id="country"
-            name="country"
-            value={formData.country}
-            onChange={handleChange}
-            placeholder={t('examplecountry')}
-          />
-        </div>
+        <input
+          type="text"
+          name="duration"
+          placeholder="Duration"
+          value={movieData.duration}
+          onChange={handleMovieChange}
+        />
 
-        <div className="form-group">
-          <label htmlFor="releaseDate">{t('release')}</label>
-          <input
-            type="date"
-            id="releaseDate"
-            name="releaseDate"
-            value={formData.releaseDate}
-            onChange={handleChange}
-          />
-        </div>
+        <input
+          type="text"
+          name="country"
+          placeholder="Country"
+          value={movieData.country}
+          onChange={handleMovieChange}
+        />
 
-        <div className="form-group">
-          <label htmlFor="popularity">{t('popularity')}</label>
-          <textarea
-            id="popularity"
-            name="popularity"
-            value={formData.popularity}
-            onChange={handleChange}
-            placeholder={t('moviepopularityPlaceholder')}
-          />
-        </div>
+        <input
+          type="date"
+          name="releaseDate"
+          value={movieData.releaseDate}
+          onChange={handleMovieChange}
+        />
 
-        <div className="form-buttons">
-          <button type="submit" className="submit-btn">
-            {t('submit')}
-          </button>
+        <textarea
+          name="popularity"
+          placeholder="Popularity"
+          value={movieData.popularity}
+          onChange={handleMovieChange}
+        />
 
-          <button
-            type="button"
-            className="cancel-btn"
-            onClick={handleCancel}
-          >
-            {t('cancel')}
-          </button>
-        </div>
+        <h3>Main Actor</h3>
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Actor name"
+          value={actorData.name}
+          onChange={handleActorChange}
+        />
+
+        <h3>Prize</h3>
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Prize name"
+          value={prizeData.name}
+          onChange={handlePrizeChange}
+        />
+
+        <input
+          type="number"
+          name="year"
+          placeholder="Year"
+          value={prizeData.year}
+          onChange={handlePrizeChange}
+        />
+
+        <button type="submit">
+          {t("submit")}
+        </button>
 
       </form>
+
     </div>
   )
 }
 
-export default Createmovie
+export default CreateMovie
